@@ -7,6 +7,7 @@ import { getWeather } from "./api/api";
 function App() {
   const [weather, setWeather] = useState([{}]);
   const [searchWord, setSearchWord] = useState("");
+  const [err, setErr] = useState("");
 
   const setWeatherFunc = (e) => {
     e.preventDefault();
@@ -23,11 +24,15 @@ function App() {
           }
         }
         setSearchWord("");
+        setErr("");
       })
       .then(() => {
         setWeather(weatherCut);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setErr(err.message);
+        setWeather([{}]);
+      });
   };
 
   return (
@@ -49,6 +54,7 @@ function App() {
           </button>
         </form>
       </div>
+      <div>{err}</div>
       <div className="cards">
         {weather[1]
           ? weather.map((day, index) => <Card day={day} key={index} />)
