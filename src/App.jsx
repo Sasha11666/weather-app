@@ -8,10 +8,12 @@ function App() {
   const [weather, setWeather] = useState([{}]);
   const [searchWord, setSearchWord] = useState("");
   const [err, setErr] = useState("");
+  const [finalWeather, setFinalWeather] = useState([[]]);
 
   const setWeatherFunc = (e) => {
     e.preventDefault();
     let weatherCut = [];
+    let finalWeatherArr = [];
 
     getWeather(searchWord)
       .then((weather) => {
@@ -19,10 +21,31 @@ function App() {
           weatherCut.push(weather.list[0]);
         }
         for (let index = 0; index < weather.list.length; index++) {
-          if (weather.list[index].dt_txt.slice(11, 13) === "12") {
+          if (
+            weather.list[index].dt_txt.slice(11, 13) === "12" ||
+            weather.list[index].dt_txt.slice(11, 13) === "00"
+          ) {
             weatherCut.push(weather.list[index]);
           }
         }
+        console.log(weatherCut);
+        for (let index = 0; index < weatherCut.length; index++) {
+          for (let j = 0; j < weatherCut.length; j++) {
+            if (
+              weatherCut[index].dt_txt.slice(8, 10) ===
+                weatherCut[j].dt_txt.slice(8, 10) &&
+              index !== j &&
+              index < j
+            ) {
+              let arr = [];
+              arr.push(weatherCut[index]);
+              arr.push(weatherCut[j]);
+              finalWeatherArr.push(arr);
+            }
+          }
+        }
+        setFinalWeather(finalWeatherArr);
+        console.log(finalWeatherArr);
         setSearchWord("");
         setErr("");
       })
@@ -32,6 +55,7 @@ function App() {
       .catch((err) => {
         setErr(err.message);
         setWeather([{}]);
+        setFinalWeather([[]]);
       });
   };
 
@@ -59,7 +83,7 @@ function App() {
       <div>{err}</div>
       <div className="cards">
         {weather[1]
-          ? weather.map((day, index) => <Card day={day} key={index} />)
+          ? finalWeather.map((day, index) => <Card day={day} key={index} />)
           : ""}
       </div>
     </>

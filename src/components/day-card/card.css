@@ -3,7 +3,7 @@
   border-width: 2px;
   border-radius: 9px;
   padding: 16px;
-  width: 130px;
+  width: 154px;
   background-color: rgb(234, 245, 252);
   transition: all 0.3s;
 }
@@ -28,4 +28,9 @@
 
 .cold-temp {
   color: blue;
+}
+
+.night-temp {
+  color: rgb(113, 113, 129);
+  margin-bottom: 8px;
 }
