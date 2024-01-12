@@ -4,8 +4,13 @@ export async function getWeather(city) {
   );
 
   if (!response.ok) {
-    throw new Error("Ошибка сервера");
+    if (response.status === 404) {
+      throw new Error("Город не найден");
+    } else {
+      throw new Error("Ошибка сервера");
+    }
   }
+
   const data = await response.json();
   return data;
 }
