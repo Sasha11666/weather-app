@@ -1,0 +1,31 @@
+.card {
+  border-color: black;
+  border-width: 2px;
+  border-radius: 9px;
+  padding: 16px;
+  width: 130px;
+  background-color: rgb(234, 245, 252);
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 5px #ccc;
+  cursor: pointer;
+}
+
+.wind-speed {
+  font-size: 13px;
+}
+
+.humidity {
+  font-size: 13px;
+}
+
+.warm-temp {
+  color: red;
+}
+
+.cold-temp {
+  color: blue;
+}
