@@ -5,9 +5,13 @@
   text-align: center;
 }
 
+.search {
+  margin-bottom: 32px;
+}
+
 .cards {
   display: flex;
-  gap: 16px;
+  gap: 32px;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -16,6 +20,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 16px;
+}
+
+.search div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search input {
+  height: 40px;
+  width: 400px;
+  border-radius: 9px;
+  padding: 12px;
+  font-size: medium;
 }
 
 .search button {
@@ -25,6 +44,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  right: 9px;
+  border-radius: 0px;
+  border-color: black;
+  border-width: 2px;
+  border-bottom-right-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+.search button:hover {
+  border-color: rgb(0, 0, 0);
+  background-color: rgb(245, 242, 242);
 }
 
 .search-logo {

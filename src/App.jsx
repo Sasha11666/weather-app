@@ -40,18 +40,20 @@ function App() {
       <h1>Weather Global</h1>
 
       <div className="search">
-        <form action="#">
+        <form className="searchForm" action="#">
           <label htmlFor="city">Город</label>
-          <input
-            type="search"
-            placeholder="Поиск"
-            name="city"
-            id="city"
-            onChange={(event) => setSearchWord(event.target.value)}
-          />
-          <button onClick={setWeatherFunc}>
-            <img className="search-logo" src={search} alt="search logo" />
-          </button>
+          <div>
+            <input
+              type="search"
+              placeholder="Поиск"
+              name="city"
+              id="city"
+              onChange={(event) => setSearchWord(event.target.value)}
+            />
+            <button onClick={setWeatherFunc}>
+              <img className="search-logo" src={search} alt="search logo" />
+            </button>
+          </div>
         </form>
       </div>
       <div>{err}</div>

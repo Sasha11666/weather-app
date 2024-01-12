@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./card.css";
 
 export const Card = ({ day }) => {
   let months = [
@@ -24,9 +25,7 @@ export const Card = ({ day }) => {
   };
 
   return (
-    <div>
-      {/* <div>1</div> */}
-
+    <div className="card">
       <div>
         {day?.dt_txt.slice(8, 10) +
           " " +
@@ -37,7 +36,18 @@ export const Card = ({ day }) => {
         src={"http://openweathermap.org/img/w/" + day?.weather[0].icon + ".png"}
         alt="weather image"
       />
-      <div>{day?.main.temp}</div>
+      {Number(day?.main.temp) > 0 ? (
+        <div className="warm-temp">{day?.main.temp}</div>
+      ) : (
+        <div className="cold-temp">{day?.main.temp}</div>
+      )}
+
+      <div className="wind-speed">
+        Скорость ветра м/с : <strong>{day?.wind.speed}</strong>
+      </div>
+      <div className="humidity">
+        Влажность: <strong>{day?.main.humidity}</strong>
+      </div>
       <p>{capitalizeFunc(day?.weather[0].description)}</p>
     </div>
   );
