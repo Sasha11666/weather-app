@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import "./card.css";
+import sun from "../../assets/sun.svg";
+import moon from "../../assets/moon.svg";
 
 export const Card = ({ day }) => {
   let months = [
@@ -38,12 +40,19 @@ export const Card = ({ day }) => {
         }
         alt="weather image"
       />
-      {Number(day[1]?.main.temp) > 0 ? (
-        <div className="warm-temp">{day[1]?.main.temp} &deg;C</div>
-      ) : (
-        <div className="cold-temp">{day[1]?.main.temp} &deg;C</div>
-      )}
-      <div className="night-temp">{day[0]?.main.temp} &deg;C</div>
+      <div className="temp-block">
+        <img className="sun-icon" src={sun} alt="" />
+        {Number(day[1]?.main.temp) > 0 ? (
+          <div className="warm-temp">{day[1]?.main.temp} &deg;C</div>
+        ) : (
+          <div className="cold-temp">{day[1]?.main.temp} &deg;C</div>
+        )}
+      </div>
+      <div className="temp-block">
+        <img className="moon-icon" src={moon} alt="" />
+        <div className="night-temp">{day[0]?.main.temp} &deg;C</div>
+      </div>
+
       <div className="wind-speed">
         Скорость ветра м/с : <strong>{day[1]?.wind.speed}</strong>
       </div>
