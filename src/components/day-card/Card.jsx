@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import "./card.css";
+import sun from "../../assets/sun.svg";
+import moon from "../../assets/moon.svg";
 
 export const Card = ({ day }) => {
   let months = [
@@ -17,38 +19,47 @@ export const Card = ({ day }) => {
     "дек",
   ];
 
-  const capitalizeFunc = (string) => {
-    let firstLetter = string.slice(0, 1).toUpperCase();
-    let rest = string.slice(1);
-    let result = firstLetter + rest;
-    return result;
-  };
+  // const capitalizeFunc = (string) => {
+  //   let firstLetter = string.slice(0, 1).toUpperCase();
+  //   let rest = string.slice(1);
+  //   let result = firstLetter + rest;
+  //   return result;
+  // };
 
   return (
     <div className="card">
       <div>
-        {day?.dt_txt.slice(8, 10) +
+        {day[1]?.dt_txt.slice(8, 10) +
           " " +
-          months[Number(day?.dt_txt?.slice(5, 7)) - 1]}
+          months[Number(day[1]?.dt_txt?.slice(5, 7)) - 1]}
       </div>
 
       <img
-        src={"http://openweathermap.org/img/w/" + day?.weather[0].icon + ".png"}
+        src={
+          "http://openweathermap.org/img/w/" + day[1]?.weather[0].icon + ".png"
+        }
         alt="weather image"
       />
-      {Number(day?.main.temp) > 0 ? (
-        <div className="warm-temp">{day?.main.temp}</div>
-      ) : (
-        <div className="cold-temp">{day?.main.temp}</div>
-      )}
+      <div className="temp-block">
+        <img className="sun-icon" src={sun} alt="" />
+        {Number(day[1]?.main.temp) > 0 ? (
+          <div className="warm-temp">{day[1]?.main.temp} &deg;C</div>
+        ) : (
+          <div className="cold-temp">{day[1]?.main.temp} &deg;C</div>
+        )}
+      </div>
+      <div className="temp-block">
+        <img className="moon-icon" src={moon} alt="" />
+        <div className="night-temp">{day[0]?.main.temp} &deg;C</div>
+      </div>
 
       <div className="wind-speed">
-        Скорость ветра м/с : <strong>{day?.wind.speed}</strong>
+        Скорость ветра м/с : <strong>{day[1]?.wind.speed}</strong>
       </div>
       <div className="humidity">
-        Влажность: <strong>{day?.main.humidity}</strong>
+        Влажность: <strong>{day[1]?.main.humidity}</strong>
       </div>
-      <p>{capitalizeFunc(day?.weather[0].description)}</p>
+      {/* <p>{capitalizeFunc(day?.weather[0].description)}</p> */}
     </div>
   );
 };
