@@ -3,7 +3,12 @@ import "./card.css";
 import sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
 
-export const Card = ({ day }) => {
+export const Card = ({
+  day,
+  setDayDetailsOpen,
+  setDayDetails,
+  setSelectedMonth,
+}) => {
   let months = [
     "янв",
     "февр",
@@ -27,7 +32,14 @@ export const Card = ({ day }) => {
   // };
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={() => {
+        setDayDetailsOpen(true);
+        setDayDetails(day[0]?.dt_txt.slice(8, 10));
+        setSelectedMonth(months[Number(day[1]?.dt_txt?.slice(5, 7)) - 1]);
+      }}
+    >
       <div>
         {day[1]?.dt_txt.slice(8, 10) +
           " " +
@@ -42,15 +54,21 @@ export const Card = ({ day }) => {
       />
       <div className="temp-block">
         <img className="sun-icon" src={sun} alt="" />
-        {Number(day[1]?.main.temp) > 0 ? (
-          <div className="warm-temp">{day[1]?.main.temp} &deg;C</div>
+        {Number(day[0]?.main.temp) > 0 ? (
+          <div className="warm-temp">
+            {Math.round(Number(day[0]?.main.temp))} &deg;C
+          </div>
         ) : (
-          <div className="cold-temp">{day[1]?.main.temp} &deg;C</div>
+          <div className="cold-temp">
+            {Math.round(Number(day[0]?.main.temp))} &deg;C
+          </div>
         )}
       </div>
       <div className="temp-block">
         <img className="moon-icon" src={moon} alt="" />
-        <div className="night-temp">{day[0]?.main.temp} &deg;C</div>
+        <div className="night-temp">
+          {Math.round(Number(day[1]?.main.temp))} &deg;C
+        </div>
       </div>
 
       <div className="wind-speed">
@@ -65,5 +83,8 @@ export const Card = ({ day }) => {
 };
 
 Card.propTypes = {
-  day: PropTypes.object.isRequired,
+  day: PropTypes.array.isRequired,
+  setDayDetailsOpen: PropTypes.func.isRequired,
+  setDayDetails: PropTypes.func.isRequired,
+  setSelectedMonth: PropTypes.func.isRequired,
 };
