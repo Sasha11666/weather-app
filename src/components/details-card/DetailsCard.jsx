@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import "./card.css";
+import "./styles.css";
 
 export const DetailsCard = ({ hour }) => {
   return (
-    <div className="card">
+    <div className="hour-card">
       <div>{hour?.dt_txt.slice(11, 16)}</div>
       <img
         src={
@@ -29,7 +29,6 @@ export const DetailsCard = ({ hour }) => {
       <div className="humidity">
         Влажность: <strong>{hour?.main.humidity}</strong>
       </div>
-      {/* <p>{capitalizeFunc(day?.weather[0].description)}</p> */}
     </div>
   );
 };

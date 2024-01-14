@@ -24,13 +24,6 @@ export const Card = ({
     "дек",
   ];
 
-  // const capitalizeFunc = (string) => {
-  //   let firstLetter = string.slice(0, 1).toUpperCase();
-  //   let rest = string.slice(1);
-  //   let result = firstLetter + rest;
-  //   return result;
-  // };
-
   return (
     <div
       className="card"
@@ -77,7 +70,6 @@ export const Card = ({
       <div className="humidity">
         Влажность: <strong>{day[1]?.main.humidity}</strong>
       </div>
-      {/* <p>{capitalizeFunc(day?.weather[0].description)}</p> */}
     </div>
   );
 };

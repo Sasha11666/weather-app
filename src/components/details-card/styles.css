@@ -1,0 +1,32 @@
+.hour-card {
+  padding: 16px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.wind-speed {
+  font-size: 13px;
+}
+
+.humidity {
+  font-size: 13px;
+}
+
+.warm-temp {
+  color: red;
+}
+
+.cold-temp {
+  color: blue;
+}
+
+.night-temp {
+  color: rgb(113, 113, 129);
+  margin-bottom: 8px;
+}
+
+.temp-block {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
