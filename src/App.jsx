@@ -70,9 +70,8 @@ function App() {
             }
           }
         }
-
+        setDayDetailsOpen(false);
         setFinalWeather(finalWeatherArr);
-
         setSearchWord("");
         setErr("");
       })
@@ -84,6 +83,7 @@ function App() {
         setWeather([{}]);
         setFullWeather([{}]);
         setFinalWeather([[]]);
+        setDayDetailsOpen(false);
       });
   };
 
@@ -143,7 +143,12 @@ function App() {
                   ))
               : ""}
           </div>
-          <button onClick={() => setDayDetailsOpen(false)}>Вернуться</button>
+          <button
+            className="back-button"
+            onClick={() => setDayDetailsOpen(false)}
+          >
+            Вернуться
+          </button>
         </div>
       )}
     </>
